@@ -27,17 +27,17 @@ module ALU (input [31:0] src1, input [31:0] src2, input [4:0] shift_amount, inpu
                         branch_taken = 1'b0;
                     end
                     `FUNC_SLLV: begin
-                        result = src2 << src1[4:0];
+                        result = src2 << src1;
                         result_valid = 1'b1;
                         branch_taken = 1'b0;
                     end
                     `FUNC_SRLV: begin
-                        result = src2 >> src1[4:0];
+                        result = src2 >> src1;
                         result_valid = 1'b1;
                         branch_taken = 1'b0;
                     end
                     `FUNC_SRAV: begin
-                        result = $signed(src2) >>> src1[4:0];
+                        result = $signed(src2) >>> src1;
                         result_valid = 1'b1;
                         branch_taken = 1'b0;
                     end
@@ -77,7 +77,7 @@ module ALU (input [31:0] src1, input [31:0] src2, input [4:0] shift_amount, inpu
                         branch_taken = 1'b1;
                     end
                     `FUNC_JALR: begin
-                        result = {24'b0, pc} + 1;
+                        result = {24'b0, pc};
                         result_valid = 1'b1;
                         branch_taken = 1'b1;
                     end
@@ -173,7 +173,7 @@ module ALU (input [31:0] src1, input [31:0] src2, input [4:0] shift_amount, inpu
                 branch_taken = 1'b1;
             end
             `OP_JAL: begin
-                result = {24'b0, pc} + 1;
+                result = {24'b0, pc};
                 result_valid = 1'b1;
                 branch_taken = 1'b1;
             end
